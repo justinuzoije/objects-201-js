@@ -1,31 +1,31 @@
-var spiderman = {
-  name: 'Spiderman',
-  realName: 'Peter Parker'
-};
-
-var superman = {
-  name: 'Superman',
-  realName: 'Clark Kent'
-};
-
-var mom = {
-  firstName: 'Alice',
-  lastName: 'Wong',
-  eyeColor: 'brown',
-  hairColor: 'black'
-};
-
-var daughter = {
-  firstName: 'Ilene',
-  hairColor: 'brown'
-};
-
-function sayHi() {
-  console.log('I am ' + this.name + '!');
-}
-
-function revealIdentity() {
-  console.log('My real name is ' + this.realName + '.');
+// var spiderman = {
+//   name: 'Spiderman',
+//   realName: 'Peter Parker'
+// };
+//
+// var superman = {
+//   name: 'Superman',
+//   realName: 'Clark Kent'
+// };
+//
+// var mom = {
+//   firstName: 'Alice',
+//   lastName: 'Wong',
+//   eyeColor: 'brown',
+//   hairColor: 'black'
+// };
+//
+// var daughter = {
+//   firstName: 'Ilene',
+//   hairColor: 'brown'
+// };
+//
+// function sayHi() {
+//   console.log('I am ' + this.name + '!');
+// }
+//
+// function revealIdentity() {
+//   console.log('My real name is ' + this.realName + '.');
 }
 
 //This attaches the say hi function to spiderman and superman
@@ -71,6 +71,25 @@ function revealIdentity() {
 // mom.showInfo();
 // daughter.showInfo();
 
+//Style of of making a person
+// function Person(name) {
+//   this.name = name;
+//   this.friends = [];
+//   this.greet = function(){
+//     console.log(this.createGreeting(other));
+//   };
+//
+//   Person.prototype.addFriend = function(friend) {
+//     this.friends.push(friend);
+//   };
+//
+//   Person.prototype.createGreeting = function(other) {
+//     return 'Yo ' + other.name + '! from ' + this.name + '.';
+//   };
+// }
+
+
+//Another style of making a person
 // function Person(name) {
 //   this.name = name;
 //   this.friends = [];
@@ -87,22 +106,23 @@ function revealIdentity() {
 //   return 'Yo ' + other.name + '! from ' + this.name + '.';
 // };
 
-// Person.prototype.greet = function(other) {
-//   console.log(this.createGreeting(other));
-// };
 
-function Person(name) {
-  this.name = name;
-  this.friends = [];
-  this.greet = function(){
-    console.log(this.createGreeting(other));
+//Factory Funcion
+function createPerson(name) {
+  var person = {
+    name: name
   };
+
+  person.greet = function(other) {
+    console.log('Yo' + other.name + '! from ' + this.name + '.');
+  };
+
+  // Person.prototype.lazyGreet
+
+  return person;
 }
 
-Person.prototype.addFriend = function(friend) {
-  this.friends.push(friend);
-};
+var jon = createPerson('Jon');
+var bob = createPerson('Bob');
 
-Person.prototype.createGreeting = function(other) {
-  return 'Yo ' + other.name + '! from ' + this.name + '.';
-};
+jon.greet(bob);
